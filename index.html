@@ -15,16 +15,30 @@
 <body>
 
 <div id="app">
-    <ul>
+    <tasks :list="tasks"></tasks>
+</div>
+
+
+<template id="tasks-template">
+    <h1>
+        My Tasks
+        <span v-show="remaining">({{ remaining }})</span>
+    </h1>
+    <ul v-show="list.length">
         <li :class="{ 'completed': task.completed }"
-            v-for="task in tasks"
-            @click="toggleLine(task)"
+            v-for="task in list"
+            @click="task.completed = !task.completed"
         >
             {{ task.body }}
+            <strong @click="deleteTask(task)">x</strong>
         </li>
     </ul>
 
-</div>
+    <p v-else>There are no tasks</p>
+    <button @click="clearCompleted">
+        Clear complited
+    </button>
+</template>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
