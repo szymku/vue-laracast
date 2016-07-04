@@ -7,37 +7,28 @@
 </head>
 
 <body>
-    <div id="app">
 
-        <counter subject="Likes"></counter>
-        <counter subject="Dislikes"></counter>
+<h2>{{ fullname }}</h2>
+<input type="text" v-model="first">
+<input type="text" v-model="last">
 
-        <template id="counter-template">
-            <h1>{{ subject }}</h1>
-            <button @click="count += 1">{{ count }}</button>
-        </template>
-        
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
-    <script>
-    Vue.component('counter', {
-        template: '#counter-template',
-
-        props: ['subject'],
-
-        data: function() {
-            return {
-                count: 0
-            };
-        }
-    });
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
+<script>
 
     new Vue({
-        el: '#app',
+        el: 'body',
+        data: {
+            first: 'Szymon',
+            last: "K"
+        },
+        computed: {
+            fullname: function () {
+                return this.first + ' ' + this.last;
+            }
+        }
 
     });
-    </script>
+</script>
 </body>
 
 </html>
